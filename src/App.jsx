@@ -1,34 +1,43 @@
 import { tokenList } from "./saga.js"
+import React from 'react'
 
 export default function() {
-    
-    async function fetchPool(tokenAddress) {
-        const response = await fetch('https://omni.icarus.tools/saga/cush/searchPoolsByAddress', {
-            method: 'POST',
-            heeaders: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                params: [
-                    tokenAddress,
-                    {
-                        result_size: 2,
-                        sort_by: "t0_change_usd",
-                        sort_order: true
-                    }
-                ]
-            })
-        })
 
-        const data = await response.json()
-        console.log(data)
+    const [APIresponse, setAPIresponse] = React.useState([])
+
+    async function fetchPool(tokenAddress) {
+        try {
+            const response = await fetch('https://omni.icarus.tools/saga/cush/searchPoolsByAddress', {
+                method: 'POST',
+                heeaders: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    params: [
+                        tokenAddress,
+                        {
+                            result_size: 2,
+                            sort_by: "t0_change_usd",
+                            sort_order: true
+                        }
+                    ]
+                })
+            })
+    
+            const data = await response.json()
+            console.log(data.result.pools)
+            setAPIresponse(data.result.pools)
+        } catch(err) {
+            window.alert("Error fetching data, please try again later!")
+        }
+        
     }
 
     function handleTokenSubmit(formData) {
-        console.log(formData.get("tokenList"))    
+        fetchPool(formData.get("tokenList"))
     }
-
+    
     const tokenSymbolElements = tokenList.map(token=>(
         <option 
             key={token.ercAddress}
@@ -38,12 +47,12 @@ export default function() {
         </option>
     ))
 
-    fetchPool(tokenList[0].ercAddress)
     return (
     <>
         <header>
             <h1>The Degen Saganauts</h1>
         </header>
+
         <main>
             <form action={handleTokenSubmit}>
                 <section className="element-submission">
@@ -56,6 +65,10 @@ export default function() {
                 </section>
                 <button className="btn-submit">Submit!</button>
             </form>
+
+            <section className="pool-results">
+            </section>
         </main>
+
     </>)
 }
