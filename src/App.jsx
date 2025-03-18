@@ -25,6 +25,37 @@ export default function() {
         console.log(data)
     }
 
+    function handleTokenSubmit(formData) {
+        console.log(formData.get("tokenList"))    
+    }
+
+    const tokenSymbolElements = tokenList.map(token=>(
+        <option 
+            key={token.ercAddress}
+            value={token.ercAddress}
+        >
+            {token.symbol}
+        </option>
+    ))
+
     fetchPool(tokenList[0].ercAddress)
-    return (<h1>Saga DEGEN Manager</h1>)
+    return (
+    <>
+        <header>
+            <h1>The Degen Saganauts</h1>
+        </header>
+        <main>
+            <form action={handleTokenSubmit}>
+                <section className="element-submission">
+                    <label htmlFor="tokenList">
+                        Pick your degen token here:
+                    </label>
+                    <select id="tokenList" name="tokenList">
+                            {tokenSymbolElements}
+                    </select>
+                </section>
+                <button className="btn-submit">Submit!</button>
+            </form>
+        </main>
+    </>)
 }
