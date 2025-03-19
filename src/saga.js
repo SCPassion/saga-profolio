@@ -31,3 +31,5 @@ export const tokenList =
         ercAddress: "0x4E33613adD93463E82A14080021f2FfaF1e062CF"
     },
     ]
+
+export const okuPoolUrl = "https://oku.trade/app/saga/liquidity/"

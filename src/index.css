@@ -31,7 +31,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
 }
 
 header>h1 {
@@ -127,6 +127,18 @@ select {
 
 span {
   font-weight: 700;
+}
+
+a {
+  color: var(--back-color);
+  text-decoration: none;
+  transition: 250ms all;
+}
+
+a:hover,
+a:focus {
+  background-color: rgba(180, 180, 180, 0.5);
+  transform: scale(1.1);
 }
 
 @media (min-width: 880px) {
