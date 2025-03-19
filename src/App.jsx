@@ -1,6 +1,5 @@
 import { tokenList, okuPoolUrl } from "./saga.js"
 import React from 'react'
-import { APIresponseExample } from "./apiResponse.js"
 
 export default function () {
 
@@ -84,11 +83,11 @@ export default function () {
                     </div>
                     <div>
                         <p><span>Total {t0_symbol}</span>: {t0_tvl.toFixed(2)}</p>
-                        <p><span>USD</span>: ${t0_tvl_usd.toFixed(2)}</p>
+                        <p><span>In USD</span>: ${t0_tvl_usd.toFixed(2)}</p>
                     </div>
                     <div>
                         <p><span>Total {t1_symbol}</span>: {t1_tvl.toFixed(2)}</p>
-                        <p><span>USD</span>: ${t1_tvl_usd.toFixed(2)}</p>
+                        <p><span>In USD</span>: ${t1_tvl_usd.toFixed(2)}</p>
                     </div>
                 </a>
             </div>
@@ -105,7 +104,7 @@ export default function () {
                 <form action={handleTokenSubmit}>
                     <section className="element-submission">
                         <label htmlFor="tokenList">
-                            Pick your degen token here:
+                            Pick your degen token pool here:
                         </label>
                         <select id="tokenList" name="tokenList">
                             {tokenSymbolElements}
