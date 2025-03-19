@@ -6,9 +6,9 @@ export default function () {
 
     const [APIresponse, setAPIresponse] = React.useState([])
 
-    async function fetchPool(tokenAddress) {
+    async function fetchPool(token) {
         try {
-            const response = await fetch('https://omni.icarus.tools/saga/cush/searchPoolsByAddress', {
+            const response = await fetch('https://omni.icarus.tools/saga/cush/searchPoolsByTokenNameOrSymbol', {
                 method: 'POST',
                 heeaders: {
                     'Accept': 'application/json',
@@ -16,7 +16,7 @@ export default function () {
                 },
                 body: JSON.stringify({
                     params: [
-                        tokenAddress,
+                        token,
                         {
                             result_size: 2,
                             sort_by: "t0_change_usd",
@@ -42,12 +42,13 @@ export default function () {
     const tokenSymbolElements = tokenList.map(token => (
         <option
             key={token.ercAddress}
-            value={token.ercAddress}
+            value={token.symbol}
         >
             {token.symbol}
         </option>
     ))
 
+    console.log(APIresponse.length)
     const poolElements = APIresponse.map((pool, index) => {
         const {
             t0_symbol, t0_price_usd, t0_tvl, t0_tvl_usd,
@@ -55,22 +56,32 @@ export default function () {
             total_fees_usd, total_volume_7d_usd, tvl_usd
         } = pool
 
+        console.log(pool)
+        console.log(t0_symbol, t1_symbol)
+        const icon0 = tokenList.find(token => token.symbol === t0_symbol).icon
+        const icon1 = tokenList.find(token => token.symbol === t1_symbol).icon
         return (
             <div className="matrix-container"
                 key={index}>
                 <div className="tvl-info">
-                    <h2>{t0_symbol}/{t1_symbol} POOL</h2>
-                    <p>Total value locked: ${tvl_usd.toFixed(2)}</p>
-                    <p>Total fees: ${total_fees_usd.toFixed(2)}</p>
-                    <p>Total volume in the last 7 days: ${total_volume_7d_usd.toFixed(2)}</p>
+                    <h2 className="token-pair">
+                        <img src={icon0} width="30px" height="30px" />
+                        <span> {t0_symbol} / {t1_symbol} </span>
+                        <img src={icon1} width="25px" height="25px" />
+                    </h2>
+                    <div className="tvl-matrix">
+                        <p><span>TVL (USD)</span>: ${tvl_usd.toFixed(2)}</p>
+                        <p><span>Total fees</span>: ${total_fees_usd.toFixed(2)}</p>
+                    </div>
+                    <p><span>7-day Volume</span>: ${total_volume_7d_usd.toFixed(2)}</p>
                 </div>
                 <div>
-                    <p>{t0_symbol} Liquidity: {t0_tvl.toFixed(2)}</p>
-                    <p>USD: ${t0_tvl_usd.toFixed(2)}</p>
+                    <p><span>Total {t0_symbol}</span>: {t0_tvl.toFixed(2)}</p>
+                    <p><span>USD</span>: ${t0_tvl_usd.toFixed(2)}</p>
                 </div>
                 <div>
-                    <p>{t1_symbol} Liquidity: {t1_tvl.toFixed(2)}</p>
-                    <p>USD: ${t1_tvl_usd.toFixed(2)}</p>
+                    <p><span>Total {t1_symbol}</span>: {t1_tvl.toFixed(2)}</p>
+                    <p><span>USD</span>: ${t1_tvl_usd.toFixed(2)}</p>
                 </div>
             </div>
         )

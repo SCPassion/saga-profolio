@@ -108,3 +108,23 @@ select {
   grid-column: span 2;
   border-bottom: 1px solid #000;
 }
+
+.tvl-matrix {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.token-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  background-color: rgb(220, 220, 220);
+  padding: 0.25em;
+  border-radius: 5px;
+}
+
+span {
+  font-weight: 700;
+}
