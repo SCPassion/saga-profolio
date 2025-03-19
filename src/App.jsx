@@ -22,7 +22,8 @@ export default function () {
                             sort_order: true
                         }
                     ]
-                })
+                }),
+                mode: 'cors'
             })
 
             const data = await response.json()
