@@ -20,7 +20,6 @@ body {
   background-size: auto, 200px 200px;
   color: var(--back-color);
   min-height: 100vh;
-
   display: flex;
 
   flex-direction: column;
@@ -51,7 +50,7 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 1em;
+  gap: 1.5em;
   background-color: #FFE0CF;
   padding: 1.2em;
   border-radius: 5px;
@@ -128,4 +127,22 @@ select {
 
 span {
   font-weight: 700;
+}
+
+@media (min-width: 880px) {
+  body {
+    background-size: auto, 300px 300px;
+  }
+
+  main {
+    width: 95vh;
+  }
+
+  .pool-results {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 2em;
+  }
 }
