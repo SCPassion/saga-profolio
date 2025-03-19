@@ -1,7 +1,7 @@
 import { tokenList } from "./saga.js"
 import React from 'react'
 
-export default function() {
+export default function () {
 
     const [APIresponse, setAPIresponse] = React.useState([])
 
@@ -24,21 +24,21 @@ export default function() {
                     ]
                 })
             })
-    
+
             const data = await response.json()
             setAPIresponse(data.result.pools)
-        } catch(err) {
+        } catch (err) {
             window.alert("Error fetching data, please try again later!")
         }
-        
+
     }
 
     function handleTokenSubmit(formData) {
         fetchPool(formData.get("tokenList"))
     }
-    
-    const tokenSymbolElements = tokenList.map(token=>(
-        <option 
+
+    const tokenSymbolElements = tokenList.map(token => (
+        <option
             key={token.ercAddress}
             value={token.ercAddress}
         >
@@ -47,27 +47,27 @@ export default function() {
     ))
 
     return (
-    <>
-        <header>
-            <h1>The Degen Saganauts</h1>
-        </header>
+        <>
+            <header>
+                <h1>The Degen Saganauts</h1>
+            </header>
 
-        <main>
-            <form action={handleTokenSubmit}>
-                <section className="element-submission">
-                    <label htmlFor="tokenList">
-                        Pick your degen token here:
-                    </label>
-                    <select id="tokenList" name="tokenList">
+            <main>
+                <form action={handleTokenSubmit}>
+                    <section className="element-submission">
+                        <label htmlFor="tokenList">
+                            Pick your degen token here:
+                        </label>
+                        <select id="tokenList" name="tokenList">
                             {tokenSymbolElements}
-                    </select>
+                        </select>
+                    </section>
+                    <button className="btn-submit">Submit!</button>
+                </form>
+
+                <section className="pool-results">
                 </section>
-                <button className="btn-submit">Submit!</button>
-            </form>
+            </main>
 
-            <section className="pool-results">
-            </section>
-        </main>
-
-    </>)
+        </>)
 }

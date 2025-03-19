@@ -3,7 +3,9 @@
   --start-color: #F9EFE5;
 }
 
-*, *::before, *::after { 
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -11,8 +13,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background-image: linear-gradient(var(--start-color), #F8F8F8);
+  background-image: linear-gradient(var(--start-color), #F8F8F8), url('./assets/saga_white.png');
+  background-blend-mode: overlay;
+  background-position: center;
   background-repeat: no-repeat;
+  background-size: auto, 200px 200px;
   color: var(--back-color);
   min-height: 100vh;
 
@@ -23,12 +28,14 @@ body {
   padding: 2em 1em;
 }
 
-header > h1 {
+header>h1 {
   font-weight: 700;
   font-size: 1.5rem;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin-top: 0;
 }
 
@@ -41,6 +48,7 @@ form {
   padding: 1.2em;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  font-size: 1rem;
 }
 
 section {
@@ -49,20 +57,32 @@ section {
   gap: 0.2em;
 }
 
-select, button {
+select,
+button {
   cursor: pointer;
   font-family: inherit;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   color: var(--back-color);
   background-color: var(--start-color);
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: inherit;
+}
 
+button {
+  padding: 0.5em 1em;
+}
+
+select {
+  padding: 0.8em 1.2em;
 }
 
 .btn-submit {
   transition: 0.25s all;
 }
 
-.btn-submit:hover, .btn-submit:focus {
+.btn-submit:hover,
+.btn-submit:focus {
   transform: scale(1.25);
 }
