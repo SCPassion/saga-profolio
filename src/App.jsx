@@ -118,5 +118,9 @@ export default function () {
                 </section>
             </main>
 
+            <footer>
+                <p><span>Created by SCP, Frontend Developer</span></p>
+                <p>Saga ambassador & NodeStake contributor</p>
+            </footer>
         </>)
 }

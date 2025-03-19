@@ -9,6 +9,24 @@
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+footer p {
+  margin-bottom: 0.15em;
+  font-size: 0.8rem;
+}
+
+footer span {
+  font-weight: 600;
+}
+
 body {
   margin: 0;
   padding: 0;
