@@ -27,7 +27,6 @@ export default function () {
             })
 
             const data = await response.json()
-            console.log(data)
             setAPIresponse(data.result.pools)
         } catch (err) {
             window.alert("Error fetching data, please try again later!")
@@ -39,16 +38,19 @@ export default function () {
         fetchPool(formData.get("tokenList"))
     }
 
-    const tokenSymbolElements = tokenList.map(token => (
-        <option
-            key={token.ercAddress}
-            value={token.symbol}
-        >
-            {token.symbol}
-        </option>
-    ))
+    const tokenSymbolElements = tokenList.map(token => {
+        if (token.symbol !== "USDC") {
+            return (
+                <option
+                    key={token.ercAddress}
+                    value={token.symbol}
+                >
+                    {token.symbol}
+                </option>
+            )
+        }
+    })
 
-    console.log(APIresponse.length)
     const poolElements = APIresponse.map((pool, index) => {
         const {
             t0_symbol, t0_price_usd, t0_tvl, t0_tvl_usd,
@@ -56,8 +58,6 @@ export default function () {
             total_fees_usd, total_volume_7d_usd, tvl_usd
         } = pool
 
-        console.log(pool)
-        console.log(t0_symbol, t1_symbol)
         const icon0 = tokenList.find(token => token.symbol === t0_symbol).icon
         const icon1 = tokenList.find(token => token.symbol === t1_symbol).icon
         return (
