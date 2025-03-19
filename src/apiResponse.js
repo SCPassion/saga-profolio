@@ -1,5 +1,5 @@
-export const APIresponse = [
-{
+export const APIresponseExample = [
+  {
     "block": 1600504,
     "address": "0x387b99a979c79f827f0ca8a752893472dc34b7ec",
     "fee": 100,

@@ -1,5 +1,6 @@
 import { tokenList } from "./saga.js"
 import React from 'react'
+import { APIresponseExample } from "./apiResponse.js"
 
 export default function () {
 
@@ -26,6 +27,7 @@ export default function () {
             })
 
             const data = await response.json()
+            console.log(data)
             setAPIresponse(data.result.pools)
         } catch (err) {
             window.alert("Error fetching data, please try again later!")
@@ -45,6 +47,34 @@ export default function () {
             {token.symbol}
         </option>
     ))
+
+    const poolElements = APIresponse.map((pool, index) => {
+        const {
+            t0_symbol, t0_price_usd, t0_tvl, t0_tvl_usd,
+            t1_symbol, t1_price_usd, t1_tvl, t1_tvl_usd,
+            total_fees_usd, total_volume_7d_usd, tvl_usd
+        } = pool
+
+        return (
+            <div className="matrix-container"
+                key={index}>
+                <div className="tvl-info">
+                    <h2>{t0_symbol}/{t1_symbol} POOL</h2>
+                    <p>Total value locked: ${tvl_usd.toFixed(2)}</p>
+                    <p>Total fees: ${total_fees_usd.toFixed(2)}</p>
+                    <p>Total volume in the last 7 days: ${total_volume_7d_usd.toFixed(2)}</p>
+                </div>
+                <div>
+                    <p>{t0_symbol} Liquidity: {t0_tvl.toFixed(2)}</p>
+                    <p>USD: ${t0_tvl_usd.toFixed(2)}</p>
+                </div>
+                <div>
+                    <p>{t1_symbol} Liquidity: {t1_tvl.toFixed(2)}</p>
+                    <p>USD: ${t1_tvl_usd.toFixed(2)}</p>
+                </div>
+            </div>
+        )
+    })
 
     return (
         <>
@@ -66,6 +96,7 @@ export default function () {
                 </form>
 
                 <section className="pool-results">
+                    {poolElements}
                 </section>
             </main>
 

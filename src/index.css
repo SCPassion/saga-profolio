@@ -22,10 +22,17 @@ body {
   min-height: 100vh;
 
   display: flex;
+
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 2em 1em;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 header>h1 {
@@ -35,6 +42,7 @@ header>h1 {
 
 h1,
 h2,
+h3,
 p {
   margin-top: 0;
 }
@@ -85,4 +93,18 @@ select {
 .btn-submit:hover,
 .btn-submit:focus {
   transform: scale(1.25);
+}
+
+.matrix-container {
+  background-color: rgba(220, 220, 220, 0.5);
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.tvl-info {
+  grid-column: span 2;
+  border-bottom: 1px solid #000;
 }
