@@ -18,7 +18,7 @@ export default function () {
                     params: [
                         token,
                         {
-                            result_size: 2,
+                            result_size: 10,
                             sort_by: "t0_change_usd",
                             sort_order: true
                         }
@@ -39,16 +39,14 @@ export default function () {
     }
 
     const tokenSymbolElements = tokenList.map(token => {
-        if (token.symbol !== "USDC") {
-            return (
-                <option
-                    key={token.ercAddress}
-                    value={token.symbol}
-                >
-                    {token.symbol}
-                </option>
-            )
-        }
+        return (
+            <option
+                key={token.ercAddress}
+                value={token.symbol}
+            >
+                {token.symbol}
+            </option>
+        )
     })
 
     const poolElements = APIresponse.map((pool, index) => {
@@ -58,8 +56,16 @@ export default function () {
             total_fees_usd, total_volume_7d_usd, tvl_usd
         } = pool
 
-        const icon0 = tokenList.find(token => token.symbol === t0_symbol).icon
-        const icon1 = tokenList.find(token => token.symbol === t1_symbol).icon
+        const token0 = tokenList.filter(token => token.symbol === t0_symbol)
+        const token1 = tokenList.filter(token => token.symbol === t1_symbol)
+
+        if (token0.length === 0 || token1.length === 0) {
+            return null
+        }
+
+        const icon0 = token0[0].icon
+        const icon1 = token1[0].icon
+
         return (
             <div className="matrix-container"
                 key={index}>
