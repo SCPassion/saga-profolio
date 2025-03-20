@@ -20,7 +20,7 @@ export default function (props) {
                     {tokenSymbolElements}
                 </select>
             </section>
-            <button className="btn-submit">Submit!</button>
+            <button disabled className="btn-submit">Submit!</button>
         </form>
     )
 }

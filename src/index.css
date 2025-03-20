@@ -107,10 +107,16 @@ select {
   transition: 0.25s all;
 }
 
-.btn-submit:hover,
+.btn-submit:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
+
+/* .btn-submit:hover,
 .btn-submit:focus {
   transform: scale(1.25);
-}
+} */
 
 .matrix-container {
   background-color: rgba(220, 220, 220, 0.5);

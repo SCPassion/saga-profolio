@@ -1,7 +1,9 @@
 import { okuPoolUrl } from "../src/saga.js"
+import { APIresponseExample } from "../src/apiResponse.js"
 
 export default function (props) {
-    const poolElements = props.APIresponse.map((pool, index) => {
+    const poolElements = APIresponseExample.map((pool, index) => {
+        // const poolElements = props.APIresponse.map((pool, index) => {
 
         const {
             t0_symbol, t0_price_usd, t0_tvl, t0_tvl_usd,

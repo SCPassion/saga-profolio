@@ -28,6 +28,7 @@ export default function () {
             })
 
             const data = await response.json()
+            console.log(data.result.pools)
             setAPIresponse(data.result.pools)
         } catch (err) {
             window.alert("Error fetching data, please try again later!")
